@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
 import com.mikhaellopez.circularimageview.CircularImageView
 import com.seniorproject.test.R
 import com.seniorproject.test.SignIn
