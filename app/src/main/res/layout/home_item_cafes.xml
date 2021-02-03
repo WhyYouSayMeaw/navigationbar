@@ -5,50 +5,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:cardElevation="0.5dp"
+    app:cardUseCompatPadding="true"
     app:cardCornerRadius="20dp">
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#FF8181"
-    android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="271dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#FF8181"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/cafename"
-            android:layout_width="251dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="9dp"
-            android:layout_weight="1"
-            android:text="TextView" />
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/cafedes"
-            android:layout_width="251dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="9dp"
-            android:layout_weight="1"
-            android:text="des"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/cafename"
+                android:layout_width="251dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/cafewt"
-            android:layout_width="251dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="9dp"
-            android:layout_weight="1"
-            android:text="work time"
-            android:textSize="14sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/cafedes"
+                android:layout_width="251dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp"
+                android:layout_weight="1"
+                android:text="des"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
 
-    <ImageView
-        android:id="@+id/cafepic"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/cafewt"
+                android:layout_width="251dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/athiti_light"
+                android:text="work time"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/cafepic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
