@@ -3,15 +3,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
     app:cardElevation="0.5dp"
-    app:cardUseCompatPadding="true"
-    app:cardCornerRadius="20dp">
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="377dp"
+        android:layout_height="176dp"
         android:background="#FF8181"
         android:orientation="horizontal">
 
@@ -54,7 +54,7 @@
 
         <ImageView
             android:id="@+id/cafepic"
-            android:layout_width="match_parent"
+            android:layout_width="104dp"
             android:layout_height="match_parent"
             tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
