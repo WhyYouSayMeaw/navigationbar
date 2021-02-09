@@ -11,7 +11,7 @@ import com.seniorproject.test.ui.location.LocationViewModel
 
 class DetailcafeFragment : Fragment() {
     //private lateinit var locationViewModel: LocationViewModel
-
+    var cname: String? = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,6 +24,8 @@ class DetailcafeFragment : Fragment() {
        /*locationViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })*/
+        cname = arguments?.getString("name")
+        root.findViewById<TextView>(R.id.textView2).text = cname
         return root
     }
 }

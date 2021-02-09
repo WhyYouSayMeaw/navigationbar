@@ -31,5 +31,4 @@
         android:label="Location"
         tools:layout="@layout/fragment_location" />
 
-
 </navigation>

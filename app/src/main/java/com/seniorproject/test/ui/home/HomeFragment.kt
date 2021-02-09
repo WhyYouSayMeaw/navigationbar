@@ -73,11 +73,13 @@ class HomeFragment() : Fragment() {
                 // see cafe detail
                 holder.itemView.setOnClickListener(object :View.OnClickListener{
                     override fun onClick(v: View?) {
-                        if(position == 1){
                             val activity = v!!.context as AppCompatActivity
                             val detailcafe = DetailcafeFragment()
+                            val bundle = Bundle()
+                            bundle.putString("name",model.CafeName)
+                            detailcafe.arguments = bundle
                             activity.supportFragmentManager.beginTransaction().replace(R.id.rec,detailcafe).addToBackStack(null).commit()
-                        }
+
 
                     }
                 })
