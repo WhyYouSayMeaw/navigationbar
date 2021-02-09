@@ -1,14 +1,15 @@
 package com.seniorproject.test.ui.home
 
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.seniorproject.test.DetailcafeFragment
 import com.seniorproject.test.R
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -30,6 +32,11 @@ data class cafe(
         val Logo: String = ""
 )
 class cafeViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
+interface Communicator {
+
+    fun passDataCom(cafename: String)
+
+}
 
 
 class HomeFragment() : Fragment() {
@@ -63,12 +70,28 @@ class HomeFragment() : Fragment() {
                 tvDes.text = model.CafeDes
                 tvTime.text = model.WorkTime
                 Picasso.get().load(model.Logo).into(ivLogo)
-                //Glide.with().load(model.Logo).into(ivLogo)
+                // see cafe detail
+                holder.itemView.setOnClickListener(object :View.OnClickListener{
+                    override fun onClick(v: View?) {
+                        if(position == 1){
+                            val activity = v!!.context as AppCompatActivity
+                            val detailcafe = DetailcafeFragment()
+                            activity.supportFragmentManager.beginTransaction().replace(R.id.rec,detailcafe).addToBackStack(null).commit()
+                        }
 
+                    }
+                })
             }
         }
         root.findViewById<RecyclerView>(R.id.rvCafes).adapter = adapter
         root.findViewById<RecyclerView>(R.id.rvCafes).layoutManager = LinearLayoutManager(this.context)
+
+        //search data
+
+
+
+
+
         return root
     }
 
