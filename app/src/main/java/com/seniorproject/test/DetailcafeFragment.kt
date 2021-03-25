@@ -1,6 +1,7 @@
 package com.seniorproject.test
 
 import android.app.ActionBar
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import com.seniorproject.test.ui.home.HomeFragment
 import com.squareup.picasso.Picasso
 
 class DetailcafeFragment : Fragment() {
@@ -45,6 +49,7 @@ class DetailcafeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_detailcafe, container, false)
+
         cname = arguments?.getString("name")
         root.findViewById<TextView>(R.id.textView2).text = cname
         val db = FirebaseFirestore.getInstance()
@@ -190,6 +195,5 @@ class DetailcafeFragment : Fragment() {
 //        })
         return root
     }
-
 
 }
