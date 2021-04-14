@@ -1,10 +1,10 @@
 package com.seniorproject.test.ui.home
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.seniorproject.test.DetailcafeFragment
 import com.seniorproject.test.R
+import com.seniorproject.test.SearchFragment
 import com.squareup.picasso.Picasso
 
 data class cafe(
@@ -44,6 +45,7 @@ class HomeFragment() : Fragment() {
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+
         //Recommendation
         val query = db.collection("Cafes")
         val options = FirestoreRecyclerOptions.Builder<cafe>().setQuery(query,cafe::class.java)
@@ -81,7 +83,18 @@ class HomeFragment() : Fragment() {
         root.findViewById<RecyclerView>(R.id.rvCafes).adapter = adapter
         root.findViewById<RecyclerView>(R.id.rvCafes).layoutManager = LinearLayoutManager(this.context)
 
+
+
         //search data
+        val searchbtn = root.findViewById<ImageButton>(R.id.searchbtn)
+
+        searchbtn.setOnClickListener {
+            //Toast.makeText(root.context,"go to search",Toast.LENGTH_SHORT).show()
+            val activity = view?.context as AppCompatActivity
+            val searchFragment = SearchFragment()
+            activity.supportFragmentManager.beginTransaction().replace(R.id.rec, searchFragment).commit()
+        }
+
 
 
 
