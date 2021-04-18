@@ -1,7 +1,6 @@
 package com.seniorproject.test.ui.home
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -57,10 +56,10 @@ class HomeFragment() : Fragment() {
             }
 
             override fun onBindViewHolder(holder: cafeViewHolder, position: Int, model: cafe) {
-                val tvName:TextView = holder.itemView.findViewById(R.id.cafename)
-                val tvDes:TextView = holder.itemView.findViewById(R.id.cafedes)
-                val tvTime:TextView = holder.itemView.findViewById(R.id.cafewt)
-                val ivLogo :ImageView = holder.itemView.findViewById(R.id.cafepic)
+                val tvName:TextView = holder.itemView.findViewById(R.id.search_cafename)
+                val tvDes:TextView = holder.itemView.findViewById(R.id.result_cafedes)
+                val tvTime:TextView = holder.itemView.findViewById(R.id.result_cafewt)
+                val ivLogo :ImageView = holder.itemView.findViewById(R.id.search_cafepic)
                 tvName.text = model.CafeName
                 tvDes.text = model.CafeDes
                 tvTime.text = model.WorkTime
