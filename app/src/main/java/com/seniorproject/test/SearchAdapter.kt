@@ -1,11 +1,13 @@
 package com.seniorproject.test
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
@@ -33,6 +35,20 @@ class SearchAdapter(
         val searchcafes : Search_Cafes? = mCafes[position]
         holder.cafename.text = searchcafes!!.cafename
         Picasso.get().load(searchcafes.cafepic).into(holder.cafepic)
+
+        // see cafe detail
+        holder.itemView.setOnClickListener(object :View.OnClickListener
+        {
+            override fun onClick(v: View?)
+            {
+                val activity = v!!.context as AppCompatActivity
+                val detailcafe = DetailcafeFragment()
+                val bundle = Bundle()
+                bundle.putString("name",searchcafes.cafename)
+                detailcafe.arguments = bundle
+                activity.supportFragmentManager.beginTransaction().replace(R.id.searchpage,detailcafe).addToBackStack(null).commit()
+            }
+        })
     }
 
     override fun getItemCount(): Int {
