@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
@@ -23,6 +23,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -33,16 +39,30 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.seniorproject.test.ui.home.HomeFragment
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import com.google.firebase.database.*
 
 class DetailcafeFragment : Fragment() {
     //private lateinit var locationViewModel: LocationViewModel
     private lateinit var reference: DocumentReference
     var cname: String? = ""
+    var username:String? = ""
+    var rate:String? = "0.0"
     private lateinit var actionBar:ActionBar;
-    //private lateinit var MenuModelArrayList : ArrayList<MenuModel>
     private lateinit var MenuAdapter:MenuAdapter
-    //private lateinit var mMap: GoogleMap
-    //private var LOCATION_PERMISSION_REQUEST = 1
+    private lateinit var ratingbar:RatingBar
+    private lateinit var review:EditText
+    private lateinit var submitbtn:Button
+    private lateinit var mAuth: FirebaseAuth
+    private var CommentAdapter:CommentAdapter? = null
+    private var mComment : List<Comment>? = null
+    private var recyclerView:RecyclerView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -135,65 +155,121 @@ class DetailcafeFragment : Fragment() {
             }
         }
 
+        //review
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
+        username = currentUser?.displayName.toString()
+        //Log.d("profile",currentUser.photoUrl.toString())
+        //username = arguments?.getString("username")
+        //username = mAuth.currentUser.displayName
+        //Toast.makeText(this.context,username,Toast.LENGTH_SHORT).show()
+        ratingbar = root.findViewById(R.id.ratingBar)
+        ratingbar.rating = 0.0f
+        ratingbar.stepSize = .5f
+        ratingbar.setOnRatingBarChangeListener { ratingBar, fl, b ->
+            //Toast.makeText(this.context,"Rating : $fl",Toast.LENGTH_SHORT).show()
+            rate = fl.toFloat().toString()
+        }
+        review = root.findViewById(R.id.reviewtext)
+        submitbtn = root.findViewById(R.id.submitbtn)
 
-        //.collection("Foods").document("food1")
-//        MenuModelArrayList = ArrayList()
-//        try{
-//            db.collection("Cafes").whereEqualTo("CafeName",true)
-//            //db.collection("Cafes").document("Cafes/Boxgallery-Nakhonpathom/")
-//                .get()
-//                .addOnSuccessListener { document ->
-//                    if (document != null) {
-//
-//                        Log.d("food", "DocumentSnapshot data: ${document.data}")
-//                    } else {
-//                        Log.d("food", "No such document")
-//                    }
-//
-////                        val foods = MenuModelArrayList
-////                        for (document in task.result!!){
-////                            foods.add(document.data))
-////
-////                        }
-//                    }
-//                }
-//        catch (e : Exception){ }
-//
-//
-//
-//
-//        //init list
-//        MenuModelArrayList = ArrayList()
-//        MenuModelArrayList
-//            .add(MenuModel("https://scontent.fbkk22-4.fna.fbcdn.net/v/t31.0-8/22050985_1434689463279899_8508095488147149541_o.jpg?_nc_cat=111&ccb=3&_nc_sid=0aa96f&_nc_eui2=AeEMRI_PdEst5Wjb69ooKxJMNkHbgEFnkvA2QduAQWeS8JXZUWkiKYnm2M3QRGODu1s&_nc_ohc=auB6K-vq9TwAX8Kuxth&_nc_ht=scontent.fbkk22-4.fna&oh=5df881faecc99fe8af8634e1cf7c9ef9&oe=605D1058"))
-//        MenuModelArrayList
-//            .add(MenuModel("https://scontent.fbkk22-3.fna.fbcdn.net/v/t31.0-8/22050943_1434689663279879_3369224191100415496_o.jpg?_nc_cat=103&ccb=3&_nc_sid=0aa96f&_nc_eui2=AeH5yQehB98nSLFA6Wqt1RVO6TEVcimRNnfpMRVyKZE2d5TIU4Vr9Echw0o_Kz5BhjU&_nc_ohc=G_S1M8jsxa4AX9F0u1I&_nc_ht=scontent.fbkk22-3.fna&oh=ba0fab92dcd5a7739fe3a48f44c4264e&oe=605A8693"))
-//
-//        //setup adapter
-//        MenuAdapter = MenuAdapter(root.context,MenuModelArrayList)
-//        //setup to viewpager
-//        root.findViewById<ViewPager>(R.id.menupager).adapter = MenuAdapter
-//        root.findViewById<ViewPager>(R.id.menupager).setPadding(100,0,100,0)
-//
-//        //add page change listener
-//        root.findViewById<ViewPager>(R.id.menupager).addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
-//            override fun onPageScrolled(
-//                position: Int,
-//                positionOffset: Float,
-//                positionOffsetPixels: Int
-//            ) {
-//                //can change title of actionbar
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//
-//            }
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//
-//            }
-//        })
+        //input data
+        submitbtn.setOnClickListener {
+            //InputData()
+            val user_name : String = username.toString()
+            val ratings : String = rate.toString()
+            val reviews : String = review.text.toString().trim()
+            val cafename : String = cname.toString()
+            val profile = currentUser.photoUrl.toString()
+            val current = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+            val formatted = current.format(formatter)
+
+            val database = FirebaseDatabase.getInstance().getReference("reviews")
+            database.child(cname.toString()).child("Ratings").child(database.push().key.toString()).setValue(Reviews(cafename,user_name,profile,ratings,reviews,formatted))
+            //Log.d("review","$cname : $user_name : $ratings : $reviews : $formatted : $profile")
+            .addOnSuccessListener {
+                //Toast.makeText(this.context,"Successfully...",Toast.LENGTH_SHORT).show()
+                //root.findViewById<CardView>(R.id.cardView).visibility = View.INVISIBLE
+                //root.findViewById<ScrollView>(R.id.cafedeatailpage).fullScroll(ScrollView.SCROLL_INDICATOR_TOP)
+                val activity = view?.context as AppCompatActivity
+                val popup = ThankPopUp()
+                val bundle = Bundle()
+                bundle.putString("cname",cname)
+                popup.arguments = bundle
+                activity.supportFragmentManager.beginTransaction().replace(R.id.detailpg, popup).commit()
+                ratingbar.rating = 0.0f
+                review.setText("")
+
+            }
+        }
+
+        //show comment in recyclerview
+        //group = arguments?.getString("group")
+        //root.findViewById<TextView>(R.id.group).text = group
+        recyclerView = root.findViewById(R.id.allcomment)
+        recyclerView!!.setHasFixedSize(true)
+        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        mComment = ArrayList()
+        retrieveAllComment()
+
+
+
         return root
     }
+
+    private fun retrieveAllComment() {
+        val firebaseDatabase = FirebaseDatabase.getInstance().reference.child("reviews/"+cname+"/Ratings")
+        firebaseDatabase.addValueEventListener(object : ValueEventListener
+        {
+            override fun onDataChange(p0: DataSnapshot) {
+
+                    for (snapshot in p0.children)
+                    {
+                        val reviews : Comment? = snapshot.getValue(Comment::class.java)
+                        //if (reviews != null)
+                        //{
+                            (mComment as ArrayList<Comment>).add(reviews!!)
+                        //}
+                    }
+
+                CommentAdapter = CommentAdapter(context!!,mComment!!,false)
+                recyclerView!!.adapter = CommentAdapter
+
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
+    }
+/*
+    private fun InputData() {
+        val user_name: String? = username
+        val rating: String = "" + ratingbar.rating
+        val review: String = review.text.toString().trim()
+
+        //for time of review
+        val timestamp: String = "" + System.currentTimeMillis()
+
+        //setup data in hashmap
+        val hashmap: HashMap<String, String> = HashMap<String,String>()
+        //hashmap.put("username",""+user_name)
+        hashmap.put("ratings",""+rating)
+        hashmap.put("reviews",""+review)
+        //hashmap.put("timestamp",""+timestamp)
+
+        //put to firebase Users>>Cafe Name>>Rating
+        val database = FirebaseDatabase.getInstance().getReference("Users")
+        database.child(cname.toString()).child("Ratings").child(user_name.toString()).updateChildren(hashmap as Map<String, Any>)
+                .addOnSuccessListener {
+                    Toast.makeText(this.context,"success",Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this.context,"not success",Toast.LENGTH_SHORT).show()
+                }
+    }*/
+
 
 }
