@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -35,6 +36,8 @@ class CommentAdapter(
         holder.time.text = review!!.timestamp
         //Log.d("rrrr",review.user_name)
         Picasso.get().load(review.profile).into(holder.profile)
+        holder.rating.stepSize = .5f
+        holder.rating.rating = review!!.ratings.toFloat()
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +48,7 @@ class CommentAdapter(
         var comment : TextView
         var time : TextView
         var profile : ImageView
+        lateinit var rating : RatingBar
 
         init {
 
@@ -52,6 +56,7 @@ class CommentAdapter(
             comment = itemView.findViewById(R.id.comment)
             time = itemView.findViewById(R.id.time)
             profile = itemView.findViewById(R.id.usprofile)
+            rating = itemView.findViewById(R.id.ratingBar3)
 
         }
 
