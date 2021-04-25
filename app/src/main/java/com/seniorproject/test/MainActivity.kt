@@ -1,11 +1,16 @@
 package com.seniorproject.test
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -46,5 +51,7 @@ class MainActivity : AppCompatActivity() {
 //                R.id.navigation_home, R.id.navigation_account, R.id.navigation_bookmark, R.id.navigation_history, R.id.navigation_location))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //        navView.setupWithNavController(navController)
+
+
     }
 }

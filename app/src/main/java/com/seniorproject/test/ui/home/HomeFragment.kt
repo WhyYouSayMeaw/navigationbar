@@ -37,7 +37,7 @@ interface Communicator {
 class HomeFragment() : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

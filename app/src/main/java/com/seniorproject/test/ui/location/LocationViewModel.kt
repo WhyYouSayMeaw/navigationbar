@@ -9,4 +9,7 @@ class LocationViewModel : ViewModel() {
         value = "This is location Fragment"
     }
     val text: LiveData<String> = _text
+
+
+
 }
