@@ -3,19 +3,23 @@ package com.seniorproject.test.ui.account
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.mikhaellopez.circularimageview.CircularImageView
+import com.seniorproject.test.DetailcafeFragment
 import com.seniorproject.test.R
+import com.seniorproject.test.SearchResultFragment
 import com.seniorproject.test.SignIn
 
 class AccountFragment : Fragment() {
@@ -40,6 +44,7 @@ class AccountFragment : Fragment() {
         val name: TextView = root.findViewById(R.id.name_txt)
         val mail: TextView = root.findViewById(R.id.email_txt)
         name.text = currentUser?.displayName
+        //Toast.makeText(this.context,name.text.toString(),Toast.LENGTH_SHORT).show()
         mail.text = currentUser?.email
         val circularImageView = root.findViewById<CircularImageView>(R.id.circularImageView)
         Glide.with(this).load(currentUser?.photoUrl).circleCrop().into(circularImageView)

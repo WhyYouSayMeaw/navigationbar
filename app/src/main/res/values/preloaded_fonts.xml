@@ -3,6 +3,7 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/athiti</item>
         <item>@font/athiti_light</item>
+        <item>@font/athiti_medium</item>
         <item>@font/roboto_slab</item>
     </array>
 </resources>

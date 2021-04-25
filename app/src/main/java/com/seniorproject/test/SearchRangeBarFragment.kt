@@ -21,7 +21,7 @@ class SearchRangeBarFragment : Fragment() {
         val root = inflater.inflate(R.layout.home_pricesearch, container, false)
 
         //close btn
-        val closebtn = root.findViewById<ImageButton>(R.id.closesearchbtn)
+        val closebtn = root.findViewById<ImageButton>(R.id.closebtn)
         closebtn.setOnClickListener {
             val activity = view?.context as AppCompatActivity
             val HomeFragment = HomeFragment()
