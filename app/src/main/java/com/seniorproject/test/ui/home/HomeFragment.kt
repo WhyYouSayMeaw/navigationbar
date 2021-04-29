@@ -14,10 +14,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.seniorproject.test.DetailcafeFragment
-import com.seniorproject.test.R
-import com.seniorproject.test.SearchFragment
-import com.seniorproject.test.SearchRangeBarFragment
+import com.seniorproject.test.*
 import com.squareup.picasso.Picasso
 
 data class cafe(
@@ -28,7 +25,6 @@ data class cafe(
 )
 class cafeViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
 interface Communicator {
-
     fun passDataCom(cafename: String)
 
 }
@@ -75,7 +71,6 @@ class HomeFragment() : Fragment() {
                             bundle.putString("name",model.CafeName)
                             detailcafe.arguments = bundle
                             activity.supportFragmentManager.beginTransaction().replace(R.id.rec,detailcafe).addToBackStack(null).commit()
-
 
                     }
                 })

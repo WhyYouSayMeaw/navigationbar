@@ -71,33 +71,12 @@ interface Communicator {
 
 class LocationFragment : Fragment(), OnMapReadyCallback {
 
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    lateinit var latLng : LatLng
+
     private lateinit var locationViewModel: LocationViewModel
     private val db = Firebase.firestore
 
-    private lateinit var mMap: GoogleMap
-    private lateinit var locationManger: LocationManager
-    private lateinit var locationListener: LocationListener
-    private lateinit var currentLatLng: com.google.android.gms.maps.model.LatLng
-
-    //-----------------------get current location  youtube EDMT Dev
-    private var latitude : Double = 0.toDouble()
-    private var longitude : Double = 0.toDouble()
-    private lateinit var LatLng : LatLng
-
-    lateinit var mLastLocation: Location
-    private var mMarker : Marker?=null
-
-//    private lateinit var mMap: GoogleMap
-
-    //location
-    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var locationRequest: LocationRequest
-    lateinit var locationCallback: LocationCallback
-
-    companion object {
-        private const val MY_PERMISSION_CODE: Int = 1000
-    }
-//-----------------------get current location  youtube EDMT Dev
     override fun onCreateView(
 
             inflater: LayoutInflater,
@@ -107,41 +86,6 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         locationViewModel =
                 ViewModelProvider(this).get(LocationViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_location, container, false)
-
-//        val mapFragment = (activity as FragmentActivity).supportFragmentManager
-//                .findFragmentById(R.id.map) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
-
-//        locationManger = (activity as FragmentActivity).getSystemService(android.content.Context.LOCATION_SERVICE) as LocationManager
-//        locationListener = object: LocationListener{
-//            override fun onLocationChanged(location: Location) {
-////                location.text = " Location: "+location.latitude.toString()+" , "+location.longitude.toString()
-//                currentLatLng = com.google.android.gms.maps.model.LatLng(location.latitude, location.longitude)
-//            }
-//            override fun onProviderDisabled(provider: String) {
-//                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-//                startActivity(intent)
-//            }
-//        }
-
-//-----------------------get current location  youtube EDMT Dev
-        // request runtime permission
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
-            if (checkLocationPermission()){
-                buildLocationRequest()
-                buildLocationCallback()
-
-                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireActivity())
-                fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
-            }else{
-                buildLocationRequest()
-                buildLocationCallback()
-
-                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireActivity())
-                fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
-            }
-
-
         val query = db.collection("Cafes")
         val options = FirestoreRecyclerOptions.Builder<cafe>().setQuery(query, cafe::class.java)
                 .setLifecycleOwner(this).build()
@@ -179,145 +123,34 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         root.findViewById<RecyclerView>(R.id.nearbyCafe).adapter = adapter
         root.findViewById<RecyclerView>(R.id.nearbyCafe).layoutManager = LinearLayoutManager(this.context)
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireContext())
+        fetchLocation()
+
         return root
 
     }
-//-----------------------get current location  youtube EDMT Dev
-    private fun buildLocationCallback() {
-        locationCallback = object : LocationCallback(){
-            override fun onLocationResult(p0: LocationResult) {
-                mLastLocation = p0!!.locations[p0!!.locations.size-2] // get last location
 
-//                if (mMarker!=null){
-//                    mMarker!!.remove()
-//                }
-//
-                latitude = mLastLocation.latitude
-                longitude =mLastLocation.longitude
-                Log.d(TAG, "onLocationResult: ")
+    override fun onMapReady(p0: GoogleMap?) {
+        TODO("Not yet implemented")
+    }
+    private fun fetchLocation() {
 
-//                val latLng = LatLng(latitude,longitude)
+        val task = fusedLocationProviderClient.lastLocation
 
-//                val markerOptions = MarkerOptions()
-//                        .position(latLng)
-//                        .title("Your Position")
-//                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-//                mMarker = mMap!!.addMarker
-//                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-//                mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))
+        if(ActivityCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ){
+            ActivityCompat.requestPermissions(this.requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            return
+        }
+        task.addOnSuccessListener {
+            if (it != null){
+                Toast.makeText(context, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
+                Log.d("locationJaaaaaaaa", "${it.latitude} ${it.longitude}")
             }
         }
     }
 
-    private fun buildLocationRequest() {
-        locationRequest = LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 5000
-        locationRequest.fastestInterval = 3000
-        locationRequest.smallestDisplacement = 10f
-    }
-
-    private fun checkLocationPermission():Boolean {
-        return if (ContextCompat.checkSelfPermission(this.requireContext(),android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this.requireActivity(),android.Manifest.permission.ACCESS_FINE_LOCATION)){
-                ActivityCompat.requestPermissions(this.requireActivity(), arrayOf(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ),MY_PERMISSION_CODE)
-            } else
-                ActivityCompat.requestPermissions(this.requireActivity(), arrayOf(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ),MY_PERMISSION_CODE)
-            false
-        } else
-            true
-        }
-
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
-            MY_PERMISSION_CODE->{
-                if (grantResults.size >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                    if (ContextCompat.checkSelfPermission(this.requireContext(),android.Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
-                        if (checkLocationPermission()){
-                            buildLocationRequest()
-                            buildLocationCallback()
-
-                            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireActivity())
-                            fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
-                            mMap!!.isMyLocationEnabled=true
-                        }
-                    }
-                }
-                else
-                    Toast.makeText(this.context,"Permission Denied",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    override fun onStop() {
-        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
-        super.onStop()
-    }
-    private val callback = OnMapReadyCallback { googleMap ->
-        mMap = googleMap!!
-        val sydney = com.google.android.gms.maps.model.LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
-    override fun onMapReady(googleMap: GoogleMap){
-        mMap = googleMap
-
-        //init google play service
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-            if (ContextCompat.checkSelfPermission(this.requireContext(),android.Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
-                mMap!!.isMyLocationEnabled=true
-            }
-        }else
-            mMap!!.isMyLocationEnabled=true
-        //Enable Zoom control (not necsessary)
-        mMap.uiSettings.isZoomControlsEnabled=true
-
-    }
-//    override fun onRequestPermissionsResult(
-//            requestCode: Int,
-//            permissions: Array<out String>,
-//            grantResults: IntArray
-//    ) {
-//        when(requestCode){
-//            10 -> requestLocationButton()
-//            else -> { }
-//        }
-//    }
-
-//    private fun requestLocationButton() {
-//        if(ContextCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-//            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
-//                requestPermissions  (arrayOf(
-//                        Manifest.permission.ACCESS_FINE_LOCATION,
-//                        Manifest.permission.INTERNET),10
-//                )
-//            }
-//            return
-//        }
-//        locationManger.requestLocationUpdates("gps",5000,0f,locationListener)
-////        gpsBtn.setOnClickListener{
-////            if(currentLatLng!=null){
-////                latText.setText(currentLatLng.latitude.toString())
-////                lonText.setText(currentLatLng.longitude.toString())
-////            }
-////        }
-//    }
-
-
-//    override fun onMapReady(googleMap: GoogleMap) {
-//        mMap = googleMap
-//
-//    }
-//    override fun onPause() {
-//        super.onPause()
-//        locationManger.removeUpdates(locationListener)
-//        Log.d("GPSStatus", "On Pause!")
-//    }
 
 }
 

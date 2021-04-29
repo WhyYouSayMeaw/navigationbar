@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import com.seniorproject.test.ui.home.cafe
+
 
 class ThankPopUp : Fragment() {
     var cname: String? = ""
