@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cafecardView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginStart="8dp"
@@ -15,26 +15,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/cafeimageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00EAEAEA"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
-            <ImageView
-                android:id="@+id/cafeimageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
-
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
