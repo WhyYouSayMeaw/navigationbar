@@ -1,68 +1,47 @@
 package com.seniorproject.test.ui.location
 
 import android.Manifest
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Context.LOCATION_SERVICE
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.os.Build
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.api.Context
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.type.LatLng
 import com.seniorproject.test.DetailcafeFragment
-import com.seniorproject.test.MainActivity
 import com.seniorproject.test.R
-import com.seniorproject.test.ui.home.cafe
 import com.seniorproject.test.ui.home.cafeViewHolder
 import com.squareup.picasso.Picasso
 
-data class cafe(
-        val CafeName: String = "",
+data class cafeLocationFragment(
+        val CafeName: String,
         val CafeDistance: Float,
-        val cafePicture: String = "",
-        val cafeLatLng: GeoPoint
-)
+        val CafePicture: String,
+        var CafeLat: Double,
+        var CafeLng: Double,
+) {
+    constructor() : this("",0.toFloat(),"",0.toDouble(),0.toDouble()) {
+    }
+}
+
 class cafeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 interface Communicator {
     fun passDataCom(cafename: String)
@@ -87,9 +66,9 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                 ViewModelProvider(this).get(LocationViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_location, container, false)
         val query = db.collection("Cafes")
-        val options = FirestoreRecyclerOptions.Builder<cafe>().setQuery(query, cafe::class.java)
+        val options = FirestoreRecyclerOptions.Builder<cafeLocationFragment>().setQuery(query, cafeLocationFragment::class.java)
                 .setLifecycleOwner(this).build()
-        val adapter = object : FirestoreRecyclerAdapter<cafe, cafeViewHolder>(options) {
+        val adapter = object : FirestoreRecyclerAdapter<cafeLocationFragment, cafeViewHolder>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cafeViewHolder {
                 val view = LayoutInflater.from(this@LocationFragment.context).inflate(R.layout.near_by_item, parent, false)
                 return cafeViewHolder(view)
@@ -97,14 +76,33 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
 
 
 
-            override fun onBindViewHolder(holder: cafeViewHolder, position: Int, model: cafe) {
+            @SuppressLint("ResourceType")
+            override fun onBindViewHolder(holder: cafeViewHolder, position: Int, model: cafeLocationFragment) {
                 val cafeName: TextView = holder.itemView.findViewById(R.id.cafename)
                 val cafeDis: TextView = holder.itemView.findViewById(R.id.cafeDistance)
                 val cafePic: ImageView = holder.itemView.findViewById(R.id.cafepic)
-                val cafeGeo : GeoPoint
+                var cafeGeo : GeoPoint = GeoPoint(0.0,0.0)
+
+//                val latLng : LatLng
+                var lat : Double = 0.0
+                var lng : Double = 0.0
                 cafeName.text = model.CafeName
-//                cafeDis.text = model.cafeDistance
-                Picasso.get().load(model.Logo).into(cafePic)
+
+                lat = cafeGeo.latitude
+                lng = cafeGeo.longitude
+
+                lat = model.CafeLat
+                lng = model.CafeLng
+
+                cafeGeo = GeoPoint(lat,lng)
+                if (model.CafePicture.isEmpty()) {
+                    cafePic.setImageResource(R.drawable._01681745_264364834917056_1840657655873588240_n)
+                } else{
+                    Picasso.get().load(model.CafePicture).into(cafePic)
+                }
+//                Picasso.get().load(model.CafePicture).into(cafePic)
+
+                Log.d("cafeGeo",cafeGeo.toString() + model.CafeName)
 
                 holder.itemView.setOnClickListener(object :View.OnClickListener{
                     override fun onClick(v: View?) {
@@ -114,11 +112,9 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                         bundle.putString("name",model.CafeName)
                         detailcafe.arguments = bundle
                         activity.supportFragmentManager.beginTransaction().replace(R.id.Nearby,detailcafe).addToBackStack(null).commit()
-
                     }
                 })
             }
-
         }
         root.findViewById<RecyclerView>(R.id.nearbyCafe).adapter = adapter
         root.findViewById<RecyclerView>(R.id.nearbyCafe).layoutManager = LinearLayoutManager(this.context)

@@ -19,7 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="168dp"
         android:scaleType="fitXY"
-        tools:srcCompat="@drawable/_01681745_264364834917056_1840657655873588240_n" />
+        tools:srcCompat="@drawable/cat_cafe_logo" />
 
         <TextView
             android:id="@+id/cafeDistance"

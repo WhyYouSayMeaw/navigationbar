@@ -89,7 +89,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="342dp"
                         android:layout_height="15dp"
-                        android:layout_marginTop="8dp"
+
                         android:text="TextView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:text="Review"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/caferecycler" />
 
@@ -163,6 +162,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:progressBackgroundTint="#FFBF95"
+            android:progressTint="#FF8181"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView7" />
@@ -172,11 +173,16 @@
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_marginTop="32dp"
-            android:background="#AAAAAA"
+            android:background="#FFAD9E"
             android:gravity="top"
-            android:hint="Review..."
+            android:hint="Review Here..."
             android:minHeight="2dp"
             android:padding="10dp"
+            android:bottomRightRadius="50dp"
+            android:bottomLeftRadius="50dp"
+            android:topLeftRadius="50dp"
+            android:topRightRadius="50dp"
+            app:layout_constraintCircleRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
@@ -187,6 +193,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="32dp"
             android:text="Comment"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reviewtext" />
