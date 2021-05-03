@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
 import com.squareup.picasso.Picasso
 class MenuAdapter (private val items:List<Menu>, private val context: Context):
     RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
@@ -32,7 +31,7 @@ class MenuAdapter (private val items:List<Menu>, private val context: Context):
         Picasso.get().load(item.Imageurl).into(holder.imageView)
     }
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
-        val imageView:ImageView = view.findViewById(R.id.imageView)
+        val imageView:ImageView = view.findViewById(R.id.imgView)
     }
 }
 

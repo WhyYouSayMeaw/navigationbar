@@ -202,6 +202,8 @@ class DetailcafeFragment : Fragment() {
                 review.setText("")
 
             }
+            val database2 = FirebaseDatabase.getInstance().getReference("users")
+            database2.child("Reviews").child(database2.push().key.toString()).setValue(Reviews(cafename,user_name,profile,ratings,reviews,formatted))
         }
 
         //show comment in recyclerview
