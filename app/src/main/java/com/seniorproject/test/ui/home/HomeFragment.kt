@@ -2,6 +2,7 @@ package com.seniorproject.test.ui.home
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +17,14 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.seniorproject.test.*
 import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 
 data class cafe(
         val CafeName: String = "",
         val CafeDes: String = "",
         val WorkTime: String = "",
-        val Logo: String = ""
+        val Logo: String = "",
+        val CafeAddress: String= "",
 )
 class cafeViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView)
 interface Communicator {
@@ -61,6 +64,10 @@ class HomeFragment() : Fragment() {
                 tvName.text = model.CafeName
                 tvDes.text = model.CafeDes
                 tvTime.text = model.WorkTime
+
+                val cafeAddr : String = model.CafeAddress
+                Log.d("cafeAddress",cafeAddr + model.CafeName)
+
                 Picasso.get().load(model.Logo).into(ivLogo)
                 // see cafe detail
                 holder.itemView.setOnClickListener(object :View.OnClickListener{

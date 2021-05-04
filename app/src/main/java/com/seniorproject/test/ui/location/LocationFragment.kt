@@ -35,10 +35,11 @@ data class cafeLocationFragment(
         val CafeName: String,
         val CafeDistance: Float,
         val CafePicture: String,
-        var CafeLat: Double,
-        var CafeLng: Double,
+        val CafeLatitude : String,
+        val CafeLongitude: String,
+        val WorkTime : String
 ) {
-    constructor() : this("",0.toFloat(),"",0.toDouble(),0.toDouble()) {
+    constructor() : this("",0.toFloat(),"", "","","") {
     }
 }
 
@@ -79,30 +80,29 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
             @SuppressLint("ResourceType")
             override fun onBindViewHolder(holder: cafeViewHolder, position: Int, model: cafeLocationFragment) {
                 val cafeName: TextView = holder.itemView.findViewById(R.id.cafename)
-                val cafeDis: TextView = holder.itemView.findViewById(R.id.cafeDistance)
+//                val cafeDis: TextView = holder.itemView.findViewById(R.id.cafeDistance)
                 val cafePic: ImageView = holder.itemView.findViewById(R.id.cafepic)
-                var cafeGeo : GeoPoint = GeoPoint(0.0,0.0)
 
 //                val latLng : LatLng
-                var lat : Double = 0.0
-                var lng : Double = 0.0
+                val lat : String = model.CafeLatitude
+                val lng : String = model.CafeLongitude
+//                var Geo : GeoPoint = GeoPoint(lat,lng)
+//                lat = Geo.latitude.toDouble()
+//                lng = Geo.longitude.toDouble()
+//                lat = Geo.longitude.also { model.Longitude }
+//                lng = Geo.latitude.also { model.Lattitude}
                 cafeName.text = model.CafeName
+//                Geo = GeoPoint(lat,lng)
+                /*lat = model.CafeLat
+                lng = model.CafeLng*/
 
-                lat = cafeGeo.latitude
-                lng = cafeGeo.longitude
-
-                lat = model.CafeLat
-                lng = model.CafeLng
-
-                cafeGeo = GeoPoint(lat,lng)
                 if (model.CafePicture.isEmpty()) {
                     cafePic.setImageResource(R.drawable._01681745_264364834917056_1840657655873588240_n)
                 } else{
                     Picasso.get().load(model.CafePicture).into(cafePic)
                 }
 //                Picasso.get().load(model.CafePicture).into(cafePic)
-
-                Log.d("cafeGeo",cafeGeo.toString() + model.CafeName)
+//                Log.d("cafeGeo",lat + model.CafeName)
 
                 holder.itemView.setOnClickListener(object :View.OnClickListener{
                     override fun onClick(v: View?) {
