@@ -3,6 +3,7 @@ package com.seniorproject.test.ui.location
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -53,7 +55,7 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var latLng : LatLng
-
+    private var googleMap: GoogleMap? = null
     private lateinit var locationViewModel: LocationViewModel
     private val db = Firebase.firestore
 
@@ -75,26 +77,15 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                 return cafeViewHolder(view)
             }
 
-
-
             @SuppressLint("ResourceType")
             override fun onBindViewHolder(holder: cafeViewHolder, position: Int, model: cafeLocationFragment) {
                 val cafeName: TextView = holder.itemView.findViewById(R.id.cafename)
 //                val cafeDis: TextView = holder.itemView.findViewById(R.id.cafeDistance)
                 val cafePic: ImageView = holder.itemView.findViewById(R.id.cafepic)
 
-//                val latLng : LatLng
                 val lat : String = model.CafeLatitude
                 val lng : String = model.CafeLongitude
-//                var Geo : GeoPoint = GeoPoint(lat,lng)
-//                lat = Geo.latitude.toDouble()
-//                lng = Geo.longitude.toDouble()
-//                lat = Geo.longitude.also { model.Longitude }
-//                lng = Geo.latitude.also { model.Lattitude}
                 cafeName.text = model.CafeName
-//                Geo = GeoPoint(lat,lng)
-                /*lat = model.CafeLat
-                lng = model.CafeLng*/
 
                 if (model.CafePicture.isEmpty()) {
                     cafePic.setImageResource(R.drawable._01681745_264364834917056_1840657655873588240_n)
@@ -102,8 +93,8 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                     Picasso.get().load(model.CafePicture).into(cafePic)
                 }
 //                Picasso.get().load(model.CafePicture).into(cafePic)
-//                Log.d("cafeGeo",lat + model.CafeName)
-
+                Log.d("cafeGeo",model.CafeLongitude + model.CafeName)
+                //click to cafe detail
                 holder.itemView.setOnClickListener(object :View.OnClickListener{
                     override fun onClick(v: View?) {
                         val activity = v!!.context as AppCompatActivity
@@ -116,18 +107,20 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
                 })
             }
         }
+
         root.findViewById<RecyclerView>(R.id.nearbyCafe).adapter = adapter
         root.findViewById<RecyclerView>(R.id.nearbyCafe).layoutManager = LinearLayoutManager(this.context)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireContext())
         fetchLocation()
-
         return root
 
     }
 
     override fun onMapReady(p0: GoogleMap?) {
-        TODO("Not yet implemented")
+        this.googleMap = googleMap
+
+//        val latLngOrigin = LatLng(fetchLocation(), 123.9029382) // Ayala
     }
     private fun fetchLocation() {
 
@@ -143,6 +136,11 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
             if (it != null){
                 Toast.makeText(context, "${it.latitude} ${it.longitude}", Toast.LENGTH_SHORT).show()
                 Log.d("locationJaaaaaaaa", "${it.latitude} ${it.longitude}")
+//                val userLatitude= it.latitude
+//                val userLongitude = it.longitude
+//                userLatitude.toString()
+//                userLongitude.toString()
+//                return@addOnSuccessListener userLatitude.toString()
             }
         }
     }
