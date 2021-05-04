@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cafedeatailpage"
     android:layout_width="match_parent"
-    android:layout_height="685dp">
+    android:layout_height="730dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detailpg"
@@ -34,10 +34,12 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="5dp"
-                    android:text="TextView"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="xxCafe"
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -47,9 +49,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="394dp"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0.5dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,11 +79,15 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="342dp"
-                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="24dp"
-                        android:text="TextView"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/athiti_medium"
+                        android:text="descript"
                         android:textAlignment="viewStart"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.493"
                         app:layout_constraintStart_toStartOf="parent"
@@ -87,23 +95,53 @@
 
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="342dp"
-                        android:layout_height="15dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:text="TextView"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/athiti_medium"
+                        android:text="Address"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView15"
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                     <TextView
                         android:id="@+id/textView5"
-                        android:layout_width="342dp"
-                        android:layout_height="18dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="16dp"
-                        android:text="TextView"
+                        android:text="Time"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView16"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/athiti_medium"
+                        android:text="ที่ตั้ง :"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/athiti_medium"
+                        android:text="เปิดทำการ :"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -117,12 +155,12 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/textView17">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -135,7 +173,7 @@
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menurecycler" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/caferecycler"
@@ -146,7 +184,7 @@
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catrecycler" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
             android:id="@+id/textView7"
@@ -154,7 +192,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/athiti_medium"
             android:text="Review"
+            android:textColor="@color/ff8181"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/caferecycler" />
 
@@ -172,7 +214,7 @@
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_marginTop="32dp"
-            android:background="#AAAAAA"
+            android:background="#C3C3C3"
             android:gravity="top"
             android:hint="Review..."
             android:minHeight="2dp"
@@ -186,6 +228,7 @@
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginTop="32dp"
+            android:backgroundTint="#FF8181"
             android:text="Comment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +238,7 @@
             android:id="@+id/allcomment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="16dp"
@@ -203,6 +246,48 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/submitbtn" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/athiti_medium"
+            android:text="Menu"
+            android:textColor="#FF8181"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/athiti_medium"
+            android:text="Cat"
+            android:textColor="@color/ff8181"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menurecycler" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/athiti_medium"
+            android:text="Atmosphere"
+            android:textColor="@color/ff8181"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catrecycler" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/bg" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
@@ -34,66 +34,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:id="@+id/name_txt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:text="name"
-        android:textColor="#fbada9"
-        android:textSize="16sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textColor="#ff8181"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
 
-    <TextView
-        android:id="@+id/name_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="example"
-        android:textColor="#ff8181"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="email_address"
-        android:textColor="#fbada9"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name_txt" />
-
-    <TextView
-        android:id="@+id/email_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="example"
-        android:textColor="#ff8181"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
     <Button
         android:id="@+id/sign_out_btn"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="sign_out"
+        android:layout_marginTop="108dp"
+        android:backgroundTint="#FF8181"
+        android:fontFamily="@font/athiti_medium"
+        android:text="Log Out"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/name_txt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

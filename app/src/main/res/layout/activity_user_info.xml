@@ -11,9 +11,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="40dp"
         app:cardBackgroundColor="#FEE7D6"
         app:cardCornerRadius="20dp"
         app:cardElevation="0dp"
@@ -249,21 +249,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/addressgroup">
 
 
-                        <RadioButton
-                            android:id="@+id/photo1"
-                            android:layout_width="83dp"
-                            android:layout_height="28dp"
-                            android:text="Yes"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <RadioButton
+                        android:id="@+id/photo1"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="Yes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <RadioButton
-                            android:id="@+id/photo2"
-                            android:layout_width="83dp"
-                            android:layout_height="28dp"
-                            android:text="No"
-                            app:layout_constraintStart_toEndOf="@+id/photo1"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <RadioButton
+                        android:id="@+id/photo2"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="No"
+                        app:layout_constraintStart_toEndOf="@+id/photo1"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </RadioGroup>
 

@@ -42,10 +42,10 @@ class AccountFragment : Fragment() {
         val currentUser = mAuth.currentUser
         val root = inflater.inflate(R.layout.fragment_account, container, false)
         val name: TextView = root.findViewById(R.id.name_txt)
-        val mail: TextView = root.findViewById(R.id.email_txt)
+
         name.text = currentUser?.displayName
         //Toast.makeText(this.context,name.text.toString(),Toast.LENGTH_SHORT).show()
-        mail.text = currentUser?.email
+
         val circularImageView = root.findViewById<CircularImageView>(R.id.circularImageView)
         Glide.with(this).load(currentUser?.photoUrl).circleCrop().into(circularImageView)
         circularImageView.apply {
