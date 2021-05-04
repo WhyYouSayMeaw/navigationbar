@@ -1,6 +1,7 @@
 package com.seniorproject.test.ui.bookmark
 
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,11 +16,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.GoogleMap
 import com.seniorproject.test.R
 import com.seniorproject.test.ui.account.AccountViewModel
 
 class BookmarkFragment :Fragment() {
     private lateinit var bookmarkViewModel: BookmarkViewModel
+
+//    private lateinit var mMap : GoogleMap
+//    private var lattitude : Double =0.0
+//    private var longitude : Double = 0.0
+//
+//    private lateinit var mLastLocation : Location
 
     override fun onCreateView(
             inflater: LayoutInflater,

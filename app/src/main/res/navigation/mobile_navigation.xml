@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/navigation_bookmark"
-        android:name="com.seniorproject.test.ui.bookmark.BookmarkFragment"
+        android:name="com.seniorproject.test.ui.bookmark.MapsFragment"
         android:label="Bookmark"
         tools:layout="@layout/fragment_bookmark" />
     <fragment

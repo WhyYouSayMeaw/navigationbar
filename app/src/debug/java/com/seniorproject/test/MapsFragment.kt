@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationResult
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,6 +21,7 @@ class MapsFragment : Fragment() {
 
 //    var location: Location?=null
     private var mMap: GoogleMap? = null
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
