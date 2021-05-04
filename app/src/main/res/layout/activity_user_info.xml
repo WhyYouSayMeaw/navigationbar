@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/infopage"
+    android:layout_width="match_parent"
+    android:layout_height="700dp"
+    android:background="#FFFFFF">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="100dp"
+        app:cardBackgroundColor="#FEE7D6"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="User Info"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="50dp"
+                    android:text="Age"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Gender"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/agegroup" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="16dp"
+                    android:text="take photo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addressgroup" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="56dp"
+                    android:text="Have a car"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                <RadioGroup
+                    android:id="@+id/agegroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="61dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/gendergroup">
+
+
+                    <RadioButton
+                        android:id="@+id/agegroup1"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="15-18"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/agegroup2"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="19-22"
+                        app:layout_constraintStart_toEndOf="@+id/agegroup1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/agegroup3"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="23-26"
+                        app:layout_constraintStart_toEndOf="@+id/agegroup2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/agegroup4"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="27-30"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/agegroup1" />
+
+                    <RadioButton
+                        android:id="@+id/agegroup5"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="31+"
+                        app:layout_constraintStart_toEndOf="@+id/agegroup4"
+                        app:layout_constraintTop_toBottomOf="@+id/agegroup2" />
+
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/gendergroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="132dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+
+                    <RadioButton
+                        android:id="@+id/gender1"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="Male"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/gender2"
+                        android:layout_width="83dp"
+                        android:layout_height="25dp"
+                        android:text="Female"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/gender1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/addressgroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView12"
+                    app:layout_constraintTop_toBottomOf="@+id/agegroup">
+
+
+                    <RadioButton
+                        android:id="@+id/address1"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="BKK"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/address2"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="NKP"
+                        app:layout_constraintStart_toEndOf="@+id/address1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/address3"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="SMP"
+                        app:layout_constraintStart_toEndOf="@+id/address2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/address4"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="NTB"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/address1" />
+
+                    <RadioButton
+                        android:id="@+id/address5"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="PTN"
+                        app:layout_constraintStart_toEndOf="@+id/address4"
+                        app:layout_constraintTop_toBottomOf="@+id/address2" />
+
+                    <RadioButton
+                        android:id="@+id/address6"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="SMK"
+                        app:layout_constraintStart_toEndOf="@+id/address5"
+                        app:layout_constraintTop_toBottomOf="@+id/address3" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/likephoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/addressgroup">
+
+
+                        <RadioButton
+                            android:id="@+id/photo1"
+                            android:layout_width="83dp"
+                            android:layout_height="28dp"
+                            android:text="Yes"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <RadioButton
+                            android:id="@+id/photo2"
+                            android:layout_width="83dp"
+                            android:layout_height="28dp"
+                            android:text="No"
+                            app:layout_constraintStart_toEndOf="@+id/photo1"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/car"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/likephoto">
+
+                    <RadioButton
+                        android:id="@+id/car1"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="Yes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioButton
+                        android:id="@+id/car2"
+                        android:layout_width="83dp"
+                        android:layout_height="28dp"
+                        android:text="No"
+                        app:layout_constraintStart_toEndOf="@+id/car1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/infobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Apply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/car" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

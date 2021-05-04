@@ -25,6 +25,7 @@ class SignIn : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    var checkuser: String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -42,6 +43,7 @@ class SignIn : AppCompatActivity() {
         val button: Button = findViewById(R.id.signin_btn)
         button.setOnClickListener {
             signIn()
+
         }
 
 /*
@@ -97,11 +99,23 @@ class SignIn : AppCompatActivity() {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("SignIn", "signInWithCredential:success")
-                    val intent = Intent(this, Navigationbar::class.java)
-                    startActivity(intent)
-                    finish()
+                    val isNewUser : Boolean = task.result!!.additionalUserInfo!!.isNewUser//task.getResult()//.getAdditionalUserInfo().isNewUser()
+                    checkuser = isNewUser.toString()
+                    Log.d("checkcheck",checkuser.toString())
+                    if (isNewUser == true){
+                        val info_intent = Intent(this,UserInfo::class.java)
+                        startActivity(info_intent)
+                        finish()
+                    }
+                    else{
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("SignIn", "signInWithCredential:success")
+                        val intent = Intent(this, Navigationbar::class.java)
+                        //intent.putExtra("checkuser", checkuser)
+                        startActivity(intent)
+                        finish()
+                    }
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("SignIn", "signInWithCredential:failure", task.exception)
