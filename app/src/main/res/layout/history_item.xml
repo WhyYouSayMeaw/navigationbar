@@ -7,14 +7,15 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="0.5dp"
     app:cardUseCompatPadding="true">
+
     <LinearLayout
         android:layout_width="377dp"
-        android:layout_height="176dp"
+        android:layout_height="wrap_content"
         android:background="#FF8181"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -25,6 +26,7 @@
                 android:layout_margin="9dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_slab"
                 android:text="cafename"
@@ -41,11 +43,12 @@
                 android:layout_height="100dp"
                 android:layout_margin="9dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/athiti"
                 android:text="comment"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/history_cafename" />
@@ -55,13 +58,14 @@
                 android:layout_width="0dp"
                 android:layout_height="27dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_slab"
                 android:text="date"
-                android:textAlignment="viewEnd"
+                android:textAlignment="textEnd"
                 android:textColor="#FFFFFF"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/history_rate"
@@ -70,23 +74,18 @@
 
             <RatingBar
                 android:id="@+id/history_rate"
-                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:progressTint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/history_review"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/search_cafepic"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:scaleType="fitXY"
-            tools:srcCompat="@drawable/_01681745_264364834917056_1840657655873588240_n" />
 
     </LinearLayout>
 

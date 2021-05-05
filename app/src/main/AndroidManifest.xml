@@ -21,9 +21,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/neko_logo"
+        android:label="Neko Reccommend"
+        android:roundIcon="@mipmap/neko_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
 
@@ -39,7 +39,7 @@
         <activity android:name=".Navigationbar" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="Neko Reccommend"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

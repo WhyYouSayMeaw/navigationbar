@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pricesearchpage"
     android:layout_width="match_parent"
-    android:layout_height="700dp"
+    android:layout_height="730dp"
     android:background="#51514646"
     tools:context=".ui.home.HomeFragment">
 

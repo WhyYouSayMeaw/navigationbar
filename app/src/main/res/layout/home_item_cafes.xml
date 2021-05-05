@@ -11,45 +11,59 @@
 
     <LinearLayout
         android:layout_width="377dp"
-        android:layout_height="176dp"
+        android:layout_height="wrap_content"
         android:background="#FF8181"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/search_cafename"
-                android:layout_width="251dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="9dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/roboto_slab"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_cafedes"
-                android:layout_width="251dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="9dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/athiti"
                 android:text="des"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/athiti_light"
+                android:text="เวลาทำการ :"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/result_cafewt"
-                android:layout_width="251dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="9dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/athiti_light"
                 android:text="work time"
                 android:textColor="#FFFFFF"
-                android:textSize="11sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <ImageView
