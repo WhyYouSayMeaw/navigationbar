@@ -191,49 +191,49 @@
 
                     <RadioButton
                         android:id="@+id/address1"
-                        android:layout_width="83dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="28dp"
-                        android:text="BKK"
+                        android:text="Bangkok"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <RadioButton
                         android:id="@+id/address2"
-                        android:layout_width="83dp"
-                        android:layout_height="28dp"
-                        android:text="NKP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nakhon Pathom"
                         app:layout_constraintStart_toEndOf="@+id/address1"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <RadioButton
                         android:id="@+id/address3"
-                        android:layout_width="83dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="28dp"
-                        android:text="SMP"
+                        android:text="Samut Prakan"
                         app:layout_constraintStart_toEndOf="@+id/address2"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <RadioButton
                         android:id="@+id/address4"
-                        android:layout_width="83dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="28dp"
-                        android:text="NTB"
+                        android:text="Nonthaburi"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/address1" />
 
                     <RadioButton
                         android:id="@+id/address5"
-                        android:layout_width="83dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="28dp"
-                        android:text="PTN"
+                        android:text="Pathum Thani"
                         app:layout_constraintStart_toEndOf="@+id/address4"
                         app:layout_constraintTop_toBottomOf="@+id/address2" />
 
                     <RadioButton
                         android:id="@+id/address6"
-                        android:layout_width="83dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="28dp"
-                        android:text="SMK"
+                        android:text="Samut Sakhon"
                         app:layout_constraintStart_toEndOf="@+id/address5"
                         app:layout_constraintTop_toBottomOf="@+id/address3" />
                 </RadioGroup>

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="240dp"
                 android:text="Thank you for rating us"
-                android:textSize="32sp"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.534"
                 app:layout_constraintStart_toStartOf="parent"

@@ -70,7 +70,7 @@
             android:id="@+id/search_cafepic"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             tools:srcCompat="@drawable/_01681745_264364834917056_1840657655873588240_n" />
 
     </LinearLayout>

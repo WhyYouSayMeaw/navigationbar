@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pricesearchpage"
     android:layout_width="match_parent"
-    android:layout_height="730dp"
+    android:layout_height="700dp"
     android:background="#51514646"
     tools:context=".ui.home.HomeFragment">
 
@@ -63,6 +63,7 @@
                         android:layout_marginStart="16dp"
                         android:text="Filter by food price"
                         android:textColor="#EF5350"
+                        android:textSize="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -104,6 +105,7 @@
                         android:layout_marginTop="28dp"
                         android:text=" Lowest price (฿)"
                         android:textColor="#FF8181"
+                        android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.091"
                         app:layout_constraintStart_toStartOf="parent"

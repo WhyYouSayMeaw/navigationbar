@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FEE7D6">
+    android:background="#FECECE">
 
     <ImageView
         android:id="@+id/imgView"
-        android:layout_width="119dp"
-        android:layout_height="127dp"
+        android:layout_width="184dp"
+        android:layout_height="270dp"
         android:layout_marginTop="164dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/googleg_standard_color_18" />
+        app:srcCompat="@drawable/cat_cafe_logo" />
 
     <Button
         android:id="@+id/signin_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="196dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="#42A5F5"
+        android:backgroundTint="#EF5350"
         android:drawableLeft="@drawable/common_google_signin_btn_icon_light_focused"
         android:fontFamily="sans-serif"
         android:text="Sign In with google"
@@ -32,7 +32,7 @@
         android:textSize="18sp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgView" />
 
